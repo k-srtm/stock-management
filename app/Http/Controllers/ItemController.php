@@ -29,7 +29,7 @@ class ItemController extends Controller
         $items = Item
             ::where('items.status', 'active')
             ->select()
-            ->paginate(10);
+            ->paginate(8);
 
         $type = Item::TYPE;
 
@@ -47,6 +47,7 @@ class ItemController extends Controller
             // バリデーション
             $this->validate($request, [
                 'name' => 'required|max:100',
+                'detail' => 'required',
             ]);
             
             // 商品登録
@@ -80,6 +81,12 @@ class ItemController extends Controller
 
     public function itemEdit(Request $request)
     {
+        // バリデーション
+        $this->validate($request, [
+            'name' => 'required|max:100',
+            'detail' => 'required',
+        ]);
+        
         // 既存のレコードを取得して、編集してから保存する
         $items = Item::where('id', '=', $request->id)->first();
         $items->id = $request->id;
@@ -116,7 +123,7 @@ class ItemController extends Controller
             $query->where('id', 'LIKE', "%{$keyword}%")
                 ->orWhere('name', 'LIKE', "%{$keyword}%");
         }
-        $items = $query->paginate(10);
+        $items = $query->paginate(8);
         return view('item.index',['items'=>$items, 'keyword'=>$keyword]);
     }
 }

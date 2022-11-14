@@ -30,7 +30,7 @@
 
                         <div class="form-group">
                             <label for="type">分類</label>
-                            <select name="type" required>
+                            <select class="form-control" name="type" required>
                                 <option value=""></option>
                                 @foreach($type as $key=>$value)
                                 <option value="{{$key}}">{{$value}}</option>

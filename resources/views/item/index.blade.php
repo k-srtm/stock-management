@@ -36,18 +36,18 @@
                     <table class="table table-hover text-nowrap">
                         <thead>
                             <tr>
-                                <th scope="col" width="12%">ID</th>
-                                <th scope="col" width="20%">名前</th>
-                                <th scope="col" width="12%">分類</th>
-                                <th scope="col" width="12%">著者</th>
-                                <th scope="col" width="12%"></th>
+                                <th scope="col" class="text-wrap">ID</th>
+                                <th scope="col" class="text-wrap">名前</th>
+                                <th scope="col">分類</th>
+                                <th scope="col">著者</th>
+                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($items as $item)
                                 <tr>
-                                    <td>{{ $item->id }}</td>
-                                    <td>{!! nl2br($item->name) !!}</td>
+                                    <td class="text-wrap">{{ $item->id }}</td>
+                                    <td class="text-wrap">{!! nl2br($item->name) !!}</td>
                                     <td>{{ App\Models\Item::TYPE[$item->type] }}</td>
                                     <td>{!! nl2br($item->detail) !!}</td>
                                     <td><a href="/item/edit/{{ $item->id }}" class="btn btn-primary btn-sm">編集</a></td>

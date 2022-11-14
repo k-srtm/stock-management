@@ -9,6 +9,16 @@
 @section('content')
     <div class="row">
         <div class="col-md-10">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <div class="card card-primary">
                 <form action="/itemEdit" method="POST">
                     @csrf
@@ -21,7 +31,7 @@
 
                         <div class="form-group">
                             <label for="type">分類</label>
-                            <select name="type" required>
+                            <select class="form-control" name="type" required>
                                 <option value=""></option>
                                 @foreach($type as $key=>$value)
                                 <option value="{{$key}}" @if($key==$items->type) selected @endif>{{$value}}</option>

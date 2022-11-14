@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Item extends Model
 {
@@ -11,11 +12,17 @@ class Item extends Model
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'user_id',
-        'name',
-        'type',
-        'detail',
+    use HasFactory;
+    protected $fillable = ['user_id','name','type','detail','status',];
+
+    const TYPE = [
+        1 => "文学・文芸" ,
+        2 => "ビジネス" ,
+        3 => "趣味・実用" ,
+        4 => "絵本" ,
+        5 => "雑誌" ,
+        6 => "コミックス" ,
+        7 => "専門書・参考書"
     ];
 
     /**
